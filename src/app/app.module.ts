@@ -9,6 +9,7 @@ import { fadeInOutAnimation } from './shared/animations';
 // material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
     // material
     MatSlideToggleModule

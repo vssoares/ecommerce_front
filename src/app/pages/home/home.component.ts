@@ -7,15 +7,15 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  user: any;
+  data: any;
 
-  constructor(private route: ActivatedRoute) { }
-  
+  constructor(private route: ActivatedRoute) {
+    this.data = this.route.snapshot.data;
+    
+  }
+
   ngOnInit(): void {
-    this.route.data.subscribe(({users}) => {
-      // do something with your resolved data ...
-      console.log(users);
+    console.log(this.data);
       
-    })
   }
 }

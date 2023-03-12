@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,9 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<[]> {
-    return this.http.get<[]>(this.apiUrl);
+    return this.http.get<[]>(this.apiUrl).pipe(delay(5000));;
+  }
+  getPosts(): Observable<[]> {
+    return this.http.get<[]>(this.apiUrl).pipe(delay(2000));;
   }
 }
