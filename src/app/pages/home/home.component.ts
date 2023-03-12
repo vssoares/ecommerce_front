@@ -1,21 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  data: any;
+export class HomeComponent implements OnInit, OnDestroy {
+  produtos: any;
+  subs: Subscription[] = []
 
-  constructor(private route: ActivatedRoute) {
-    this.data = this.route.snapshot.data;
-    
+  constructor(private service: HomeService) {
+    this.produtos = [
+      { skeleton: true },
+      { skeleton: true },
+      { skeleton: true },
+      { skeleton: true }
+    ]
   }
 
   ngOnInit(): void {
-    console.log(this.data);
-      
+    this.carregarProdutos()   
+  }
+
+  carregarProdutos() {
+    this.subs.push(this.service.getProdutos().subscribe((dados) => {
+      this.produtos = dados
+    }))
+  }
+
+  ngOnDestroy(): void {
+   
+    
   }
 }

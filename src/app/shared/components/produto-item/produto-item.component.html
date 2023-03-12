@@ -1,25 +1,37 @@
-<div
-   class="min-h-80 aspect-w-1 aspect-h-1 w-full transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:shadow-lg">
+<div *ngIf="!produto.skeleton" @fade
+   class="flex flex-col h-full min-h-80 aspect-w-1 aspect-h-1 w-full transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:shadow-lg">
    <img class="h-48 w-full object-cover object-center"
-      src="https://images.unsplash.com/photo-1674296115670-8f0e92b1fddb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      [src]="produto.image"
       alt="Product Image" />
-   <div class="p-4">
-      <h2 class="mb-2 text-lg font-medium dark:text-white text-gray-900">
-        <a routerLink="produto/2">Product Name</a>
-      </h2>
-      <p class="mb-2 text-base dark:text-gray-300 text-gray-700">Product description goes here.</p>
-      <div class="flex items-center">
-         <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">$20.00</p>
-         <p class="text-base  font-medium text-gray-500 line-through dark:text-gray-300">$25.00</p>
-         <p class="ml-auto text-base font-medium text-green-500">20% off</p>
+   <div class="p-4 grow flex flex-col justify-between">
+      <div>
+         <h2 class="mt-6 mb-4 text-5xl md:text-7xl lg:text-8xl font-heading font-medium">
+            <a routerLink="produto/{{produto.id}}">{{produto.title}}</a>
+         </h2>
+         <p class="mb-2 text-base dark:text-gray-300 text-gray-700">Product description goes here.</p>
       </div>
       <div class="flex flex-col align-middle">
-         <button class="group mb-2 rounded-xl h-8 w-full bg-green-500  text-base text-white relative overflow-hidden duration-300 hover:bg-green-600">
+         <div class="flex items-center">
+            <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">$20.00</p>
+            <p class="text-base  font-medium text-gray-500 line-through dark:text-gray-300">$25.00</p>
+            <p class="ml-auto text-base font-medium text-green-500">20% off</p>
+         </div>
+         <button
+            class="group mb-2 rounded-xl h-8 w-full bg-green-500  text-base text-white relative overflow-hidden duration-300 hover:bg-green-600">
             Comprar
          </button>
-         <button class="group rounded-xl h-8 w-full bg-blue-500  text-base text-white relative overflow-hidden duration-300 hover:bg-blue-600">
+         <button
+            class="group rounded-xl h-8 w-full bg-blue-500  text-base text-white relative overflow-hidden duration-300 hover:bg-blue-600">
             Adicionar no Carrinho
          </button>
       </div>
    </div>
+</div>
+
+<div *ngIf="produto.skeleton" @fade
+   class="min-h-80 aspect-w-1 aspect-h-1 w-full transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:shadow-lg">
+   <img class="h-48 w-full object-cover object-center"
+      src="https://images.unsplash.com/photo-1674296115670-8f0e92b1fddb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      alt="Product Image" />
+
 </div>

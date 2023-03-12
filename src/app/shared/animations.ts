@@ -7,3 +7,10 @@ export const fadeInOutAnimation =
       animate('0.5s', style({ opacity: 1 }))
     ])
   ]);
+
+export let fade = trigger('fade', [
+  transition(':enter', [
+      style({ opacity: 0 }),
+      animate(1000)
+  ])
+])

@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { fade, fadeInOutAnimation } from '../../animations';
 
 @Component({
   selector: 'app-produto-item',
   templateUrl: './produto-item.component.html',
-  styleUrls: ['./produto-item.component.scss']
+  styleUrls: ['./produto-item.component.scss'],
+  animations: [fadeInOutAnimation, fade]
 })
-export class ProdutoItemComponent {
+export class ProdutoItemComponent implements OnInit {
+
+  @Input('dados') produto: any 
+
+  constructor(){
+  }
+
+  ngOnInit(): void {
+    console.log(this.produto);
+    
+  }
 
 }

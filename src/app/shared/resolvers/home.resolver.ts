@@ -16,8 +16,7 @@ export class HomeResolve implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     return forkJoin([
-      this.homeService.getPosts(),
-      this.homeService.getUsers()
+      
     ])
   }
 }
