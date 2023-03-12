@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home.routing';
 import { ProdutoItemComponent } from 'src/app/shared/components/produto-item/produto-item.component';
 import { HomeComponent } from './home.component';
+import { HomeResolve } from './home.resolve';
 
 
 
@@ -14,6 +15,9 @@ import { HomeComponent } from './home.component';
   imports: [
     CommonModule,
     HomeRoutingModule
+  ],
+  providers: [
+    
   ]
 })
 export class HomeModule { }
