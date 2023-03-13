@@ -8,19 +8,18 @@
          <h2 class="mt-6 mb-4 text-5xl md:text-7xl lg:text-8xl font-heading font-medium">
             <a routerLink="produto/{{produto.id}}">{{produto.title}}</a>
          </h2>
-         <p class="mb-2 text-base dark:text-gray-300 text-gray-700">Product description goes here.</p>
       </div>
       <div class="flex flex-col align-middle">
          <div class="flex items-center">
-            <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">$20.00</p>
-            <p class="text-base  font-medium text-gray-500 line-through dark:text-gray-300">$25.00</p>
+            <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">R${{produto.price}}</p>
+            <p class="text-base  font-medium text-gray-500 line-through dark:text-gray-300">R${{produto.price * (20/100 + 1)}}</p>
             <p class="ml-auto text-base font-medium text-green-500">20% off</p>
          </div>
-         <button
+         <button routerLink="produto/{{produto.id}}"
             class="group mb-2 rounded-xl h-8 w-full bg-green-500  text-base text-white relative overflow-hidden duration-300 hover:bg-green-600">
             Comprar
          </button>
-         <button
+         <button routerLink="produto/{{produto.id}}"
             class="group rounded-xl h-8 w-full bg-blue-500  text-base text-white relative overflow-hidden duration-300 hover:bg-blue-600">
             Adicionar no Carrinho
          </button>
