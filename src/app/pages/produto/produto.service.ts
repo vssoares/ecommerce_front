@@ -6,11 +6,11 @@ import { Observable, delay } from 'rxjs';
   providedIn: 'root'
 })
 export class ProdutoService {
-  private apiUrl = 'https://fakestoreapi.com/products';
+  private apiUrl = 'https://fakestoreapi.com/products/';
 
   constructor(private http: HttpClient) { }
 
-  getProdutos(): Observable<[]> {
-    return this.http.get<[]>(this.apiUrl).pipe(delay(3000));;
+  getProduto(id: number): Observable<[]> {
+    return this.http.get<[]>(this.apiUrl + id)
   }
 }

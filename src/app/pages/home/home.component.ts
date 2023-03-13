@@ -19,10 +19,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       { skeleton: true },
       { skeleton: true }
     ]
+    this.carregarProdutos()   
   }
 
   ngOnInit(): void {
-    this.carregarProdutos()   
   }
 
   carregarProdutos() {
@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-   
-    
+    this.subs.map(sub => {
+      sub.unsubscribe();
+    })
   }
 }

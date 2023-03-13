@@ -11,6 +11,6 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   getProdutos(): Observable<[]> {
-    return this.http.get<[]>(this.apiUrl).pipe(delay(3000));;
+    return this.http.get<[]>(this.apiUrl)  
   }
 }
