@@ -5,24 +5,17 @@
       alt="Product Image" />
    <div class="p-4 grow flex flex-col justify-between">
       <div>
-         <h2 class="mt-6 mb-4 text-5xl md:text-7xl lg:text-8xl font-heading font-medium">
-            <a routerLink="produto/{{produto.id}}">{{produto.title}}</a>
-         </h2>
+         <a class="text-sm text-gray-700" routerLink="produto/{{produto.id}}">{{produto.title}}</a>
       </div>
       <div class="flex flex-col align-middle">
          <div class="flex items-center">
-            <p class="mr-2 text-lg font-semibold text-gray-900 dark:text-white">R${{produto.price}}</p>
-            <p class="text-base  font-medium text-gray-500 line-through dark:text-gray-300">R${{produto.price * (20/100 + 1)}}</p>
-            <p class="ml-auto text-base font-medium text-green-500">20% off</p>
+            <p class="mr-2 text-sm font-semibold text-gray-900 dark:text-white">R${{produto.price}}</p>
+            <p class="text-sm  font-medium text-gray-500 line-through dark:text-gray-300">R${{produto.price * (20/100 + 1)}}</p>
+            <p class="ml-auto text-sm font-medium text-green-500">20% off</p>
          </div>
-         <button routerLink="produto/{{produto.id}}"
-            class="group mb-2 rounded-xl h-8 w-full bg-green-500  text-base text-white relative overflow-hidden duration-300 hover:bg-green-600">
-            Comprar
-         </button>
-         <button routerLink="produto/{{produto.id}}"
-            class="group rounded-xl h-8 w-full bg-blue-500  text-base text-white relative overflow-hidden duration-300 hover:bg-blue-600">
-            Adicionar no Carrinho
-         </button>
+         <a routerLink="produto/{{produto.id}}" class="mb-2 flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700">Comprar</a>
+         <a routerLink="produto/{{produto.id}}" class="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700">Adicionar no Carrinho</a>
+
       </div>
    </div>
 </div>

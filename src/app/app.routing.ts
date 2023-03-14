@@ -14,6 +14,13 @@ const routes: Routes = [
     data: {
       animation: "ProdutoComponent"
     }
+  },
+  {
+    path: "carrinho",
+    loadChildren: () => import('./pages/carrinho/carrinho.module').then(m => m.CarrinhoModule),
+    data: {
+      animation: "CarrinhoComponent"
+    }
   }
 ];
 
