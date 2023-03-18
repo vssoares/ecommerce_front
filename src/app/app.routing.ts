@@ -21,6 +21,13 @@ const routes: Routes = [
     data: {
       animation: "CarrinhoComponent"
     }
+  },
+  {
+    path: "auth",
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    data: {
+      animation: "AuthComponent"
+    }
   }
 ];
 

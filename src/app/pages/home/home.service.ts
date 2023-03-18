@@ -6,7 +6,7 @@ import { Observable, delay } from 'rxjs';
   providedIn: 'root'
 })
 export class HomeService {
-  private apiUrl = 'https://fakestoreapi.com/products';
+  private apiUrl = 'http://localhost:3000/api/v1/ecommerce/produtos';
 
   constructor(private http: HttpClient) { }
 
