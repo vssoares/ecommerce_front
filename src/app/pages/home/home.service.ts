@@ -1,16 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, delay } from 'rxjs';
+import { env } from 'src/app/env/env';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-  private apiUrl = 'https://fakestoreapi.com/products';
+  private apiUrl = env.api
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+    ) { }
 
   getProdutos(): Observable<[]> {
-    return this.http.get<[]>(this.apiUrl)  
+    const headers = this.authService.getHeaders()
+    return this.http.get<[]>(this.apiUrl + 'ecommerce/produtos', {headers})
   }
 }

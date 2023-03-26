@@ -1,16 +1,16 @@
 <div *ngIf="!produto.skeleton" @fade
    class="flex flex-col h-full min-h-80 aspect-w-1 aspect-h-1 w-full transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:shadow-lg">
    <img class="h-48 w-full object-cover object-center"
-      [src]="produto.image"
+      [src]="produto.imagem"
       alt="Product Image" />
    <div class="p-4 grow flex flex-col justify-between">
       <div>
-         <a class="text-sm text-gray-700" routerLink="produto/{{produto.id}}">{{produto.title}}</a>
+         <a class="text-sm text-gray-700" routerLink="produto/{{produto.id}}">{{produto.nome}}</a>
       </div>
       <div class="flex flex-col align-middle">
          <div class="flex items-center">
-            <p class="mr-2 text-sm font-semibold text-gray-900 dark:text-white">R${{produto.price}}</p>
-            <p class="text-sm  font-medium text-gray-500 line-through dark:text-gray-300">R${{produto.price * (20/100 + 1)}}</p>
+            <p class="mr-2 text-sm font-semibold text-gray-900 dark:text-white">R${{produto.preco}}</p>
+            <p class="text-sm  font-medium text-gray-500 line-through dark:text-gray-300">R${{produto.preco * (20/100 + 1)}}</p>
             <p class="ml-auto text-sm font-medium text-green-500">20% off</p>
          </div>
          <a routerLink="produto/{{produto.id}}" class="mb-2 flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700">Comprar</a>

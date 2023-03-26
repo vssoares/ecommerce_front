@@ -14,3 +14,10 @@ export let fade = trigger('fade', [
       animate(1000)
   ])
 ])
+
+export const fadeAnimation = trigger('fade', [
+  transition('visible <=> hidden', [
+    style({ opacity: 0, display: 'none' }),
+    animate('300ms', style({ opacity: 1, display: 'block' }))
+  ])
+])

@@ -1,0 +1,25 @@
+.carrinho {
+   visibility: visible;
+}
+
+.carrinho.carrinho-on {
+   visibility: visible;
+   transition-delay: 0s;
+}
+
+.carrinho.carrinho-off {
+   visibility: hidden;
+}
+
+.lista{
+   transform: translateX(100%);
+   transition: all .6s;
+}
+
+.carrinho.carrinho-on .lista{
+   transform: translateX(0%);
+}
+
+html:has(> .carrinho.carrinho-on .lista){
+   overflow: hidden;
+}

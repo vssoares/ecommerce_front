@@ -10,11 +10,13 @@ import { fadeInOutAnimation } from './shared/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CarrinhoComponent } from './shared/components/carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    CarrinhoComponent
   ],
   imports: [
     BrowserModule,
