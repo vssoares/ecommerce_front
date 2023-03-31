@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarrinhoService } from '../carrinho/carrinho.service';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor(
+    private carrinhoService: CarrinhoService
   ) {}
 
   ngOnInit() {}
+
+  openCarrinho() {  
+    this.carrinhoService.show()
+  }
 
 }

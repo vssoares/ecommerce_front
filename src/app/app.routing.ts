@@ -15,20 +15,6 @@ const routes: Routes = [
       animation: "ProdutoComponent"
     }
   },
-  {
-    path: "carrinho",
-    loadChildren: () => import('./pages/carrinho/carrinho.module').then(m => m.CarrinhoModule),
-    data: {
-      animation: "CarrinhoComponent"
-    }
-  },
-  {
-    path: "auth",
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
-    data: {
-      animation: "AuthComponent"
-    }
-  }
 ];
 
 @NgModule({
