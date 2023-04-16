@@ -2,7 +2,7 @@
   <div class="w-full max-w-md space-y-8">
     <div>
       <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
-      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Login</h2>
+      <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Cadastro</h2>
     </div>
     <form [formGroup]="formulario" class="mt-8 space-y-6">
       <input type="hidden" name="remember" value="true">
@@ -33,7 +33,7 @@
           </mat-form-field>
         </div>
 
-        <div [@inOutAnimation] *ngIf="formulario.get('senha')?.valid">
+        <div [@inOutAnimation] *ngIf="formulario.get('password')?.valid">
           <mat-form-field class="w-full" appearance="outline">
             <mat-label>Confirmar Senha</mat-label>
             <input type="password"  autocomplete="new-password" formControlName="confirmarPassword" matInput placeholder="Confirme sua senha">
