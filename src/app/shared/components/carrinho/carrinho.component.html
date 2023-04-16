@@ -1,4 +1,4 @@
-<div class="carrinho relative z-40" [ngClass]="{'carrinho-on': carrinhoStatus, 'carrinho-off': !carrinhoStatus}" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+<div class="carrinho relative z-40" *ngIf="carrinhoStatus" [ngClass]="{'carrinho-on': carrinhoStatus, 'carrinho-off': !carrinhoStatus}" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
   <!--
     Background backdrop, show/hide based on slide-over state.
 
@@ -9,7 +9,7 @@
       From: "opacity-100"
       To: "opacity-0"
   -->
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  <div class="fundo fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity "></div>
 
   <div class="fixed inset-0 overflow-hidden">
     <div class="absolute inset-0 overflow-hidden">

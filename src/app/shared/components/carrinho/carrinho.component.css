@@ -1,14 +1,14 @@
 .carrinho {
-   visibility: visible;
+   display: block;
 }
 
 .carrinho.carrinho-on {
-   visibility: visible;
+   display: block;
    transition-delay: 0s;
 }
 
 .carrinho.carrinho-off {
-   visibility: hidden;
+   display: none;
 }
 
 .lista{
@@ -21,5 +21,16 @@
 }
 
 html:has(> .carrinho.carrinho-on .lista){
-   overflow: hidden;
+   display: none;
+}
+
+.carrinho.carrinho-off .fundo{
+   opacity: 0;
+   transition: all .6s;
+}
+
+
+.carrinho.carrinho-on .fundo{
+   display: block;
+   transition-delay: 0s;
 }

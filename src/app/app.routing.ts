@@ -9,6 +9,13 @@ const routes: Routes = [
     }
   },
   {
+    path: "auth",
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    data: {
+      animation: "AuthComponent"
+    }
+  },
+  {
     path: "produto",
     loadChildren: () => import('./pages/produto/produto.module').then(m => m.ProdutoModule),
     data: {

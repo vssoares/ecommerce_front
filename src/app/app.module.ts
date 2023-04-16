@@ -11,6 +11,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CarrinhoComponent } from './shared/components/carrinho/carrinho.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { CarrinhoComponent } from './shared/components/carrinho/carrinho.compone
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     // material
     MatSlideToggleModule

@@ -1,0 +1,3 @@
+::ng-deep .progress-success .mdc-linear-progress__bar-inner {
+   border-color: #22c55e !important;
+}
