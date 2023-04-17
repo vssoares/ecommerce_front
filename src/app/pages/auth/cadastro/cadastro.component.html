@@ -33,7 +33,7 @@
           </mat-form-field>
         </div>
 
-        <div [@inOutAnimation] *ngIf="formulario.get('senha')?.valid">
+        <div [@inOutAnimation] *ngIf="formulario.get('password')?.valid">
           <mat-form-field class="w-full" appearance="outline">
             <mat-label>Confirmar Senha</mat-label>
             <input type="password"  autocomplete="new-password" formControlName="confirmarPassword" matInput placeholder="Confirme sua senha">
