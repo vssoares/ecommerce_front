@@ -65,16 +65,16 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formulario.setValue({
-      name: 'teste',
-      email: 'vsss23@hotmail.com',
-      password: 'vs23012001',
-      cpf: '12195745975',
-      confirmarPassword: 'vs23012001',
-      telefone: '41995716943',
-      data_nascimento: new Date("2001-01-23"),
-      sexo: "M"
-    })
+    // this.formulario.setValue({
+    //   name: 'teste',
+    //   email: 'vsss23@hotmail.com',
+    //   password: 'vs23012001',
+    //   cpf: '12195745975',
+    //   confirmarPassword: 'vs23012001',
+    //   telefone: '41995716943',
+    //   data_nascimento: new Date("2001-01-23"),
+    //   sexo: "M"
+    // })
   }
 
   cadastro() {
