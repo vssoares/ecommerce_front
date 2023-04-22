@@ -3,17 +3,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { inOutAnimation } from 'src/app/shared/animations';
+import { fadeAnimation, inOutAnimation } from 'src/app/shared/animations';
 import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css'],
-  animations: [inOutAnimation],
+  animations: [inOutAnimation, fadeAnimation],
 })
 export class CadastroComponent implements OnInit {
 
   formulario: FormGroup
+  msgErro: any;
   formEvolucao: any = 0;
   numeroItens: any = 8;
   calculo: any = 100 / this.numeroItens;
@@ -43,7 +44,7 @@ export class CadastroComponent implements OnInit {
       password: ['', Validators.required],
       cpf: ['', Validators.required],
       confirmarPassword: ['', Validators.required],
-      telefone: ['', Validators.required],
+      celular: ['', Validators.required],
       data_nascimento: ['', Validators.required],
       sexo: ['', Validators.required]
     })
@@ -65,16 +66,16 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.formulario.setValue({
-    //   name: 'teste',
-    //   email: 'vsss23@hotmail.com',
-    //   password: 'vs23012001',
-    //   cpf: '12195745975',
-    //   confirmarPassword: 'vs23012001',
-    //   telefone: '41995716943',
-    //   data_nascimento: new Date("2001-01-23"),
-    //   sexo: "M"
-    // })
+    this.formulario.setValue({
+      name: 'Vinicius Soares de Santana',
+      email: 'vsss23@hotmail.com',
+      password: 'vs23012001',
+      confirmarPassword: 'vs23012001',
+      cpf: '12195745975',
+      celular: '41995716943',
+      data_nascimento: new Date("2001-01-23"),
+      sexo: "M"
+    })
   }
 
   cadastro() {
@@ -89,7 +90,8 @@ export class CadastroComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         (err: any) => {
-          console.log(err);
+          let {message} = err.error
+          this.msgErro = message
         }
       )
     }
