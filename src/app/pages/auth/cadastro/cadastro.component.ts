@@ -79,6 +79,7 @@ export class CadastroComponent implements OnInit {
 
   cadastro() {
 
+    console.log(this.formulario.value);
     console.log(this.formulario.valid);
     
     if (this.formulario.valid) {
