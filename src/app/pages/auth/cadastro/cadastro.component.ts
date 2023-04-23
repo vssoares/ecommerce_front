@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { fadeAnimation, inOutAnimation } from 'src/app/shared/animations';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -19,16 +19,12 @@ export class CadastroComponent implements OnInit {
   numeroItens: any = 8;
   calculo: any = 100 / this.numeroItens;
 
-  etapa: any = {
-    0: 0,
-    1: this.calculo,
-    2: (this.calculo) * 2,
-    3: (this.calculo) * 3,
-    4: (this.calculo) * 4,
-    5: (this.calculo) * 5,
-    6: (this.calculo) * 6,
-    7: (this.calculo) * 7,
-    8: (this.calculo) * 8,
+  _etapa: any
+  get etapa() {
+    return this._etapa
+  }
+  set etapa(valor: any) {
+    this._etapa = (this.calculo) * valor
   }
 
   constructor(
@@ -57,32 +53,29 @@ export class CadastroComponent implements OnInit {
             count++;
           }
         }
-        this.formEvolucao = this.etapa[count];
+        this.etapa = count
+        this.formEvolucao = this.etapa
       }
     )
-
     // altera o locale do datepicker para dd/mm/yyyy
     this.adapter.setLocale('pt-BR');
   }
 
   ngOnInit() {
-    this.formulario.setValue({
-      name: 'Vinicius Soares de Santana',
-      email: 'vsss23@hotmail.com',
-      password: 'vs23012001',
-      confirmarPassword: 'vs23012001',
-      cpf: '12195745975',
-      celular: '41995716943',
-      data_nascimento: new Date("2001-01-23"),
-      sexo: "M"
-    })
+    // this.formulario.setValue({
+    //   name: 'Vinicius Soares de Santana',
+    //   email: 'vsss23@hotmail.com',
+    //   password: 'vs23012001',
+    //   confirmarPassword: 'vs23012001',
+    //   cpf: '12195745975',
+    //   celular: '41995716943',
+    //   data_nascimento: new Date("2001-01-23"),
+    //   sexo: "M"
+    // })
   }
 
   cadastro() {
-
-    console.log(this.formulario.value);
-    console.log(this.formulario.valid);
-    
+    this.formulario.markAllAsTouched()
     if (this.formulario.valid) {
       this.authService.cadastrarUsuario(this.formulario.value).subscribe(
         (res: any) => {

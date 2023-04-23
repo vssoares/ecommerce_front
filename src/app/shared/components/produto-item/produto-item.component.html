@@ -1,6 +1,6 @@
 <div *ngIf="!produto.skeleton" @fade
    class="flex flex-col h-full min-h-80 aspect-w-1 aspect-h-1 w-full transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:shadow-lg">
-   <img class="h-48 w-full object-cover object-center"
+   <img routerLink="produto/{{produto.id}}" class="h-48 w-full cursor-pointer object-cover object-center"
       [src]="produto.imagem"
       alt="Product Image" />
    <div class="p-4 grow flex flex-col justify-between">
