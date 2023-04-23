@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formulario.setValue({
-      email: 'vsss23@hotmail.com',
-      password: 'vs23012001',
-    })
+    // this.formulario.setValue({
+    //   email: 'vsss23@hotmail.com',
+    //   password: 'vs23012001',
+    // })
   }
 
   login() {
