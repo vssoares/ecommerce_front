@@ -1,0 +1,12 @@
+*{
+   font-family: 'DM Sans', sans-serif !important;
+}
+
+
+::ng-deep .mat-h1, 
+::ng-deep .mat-headline-5, 
+::ng-deep .mat-typography .mat-h1, 
+::ng-deep .mat-typography .mat-headline-5, 
+::ng-deep .mat-typography h1 {
+   font-weight: bold !important;
+}

@@ -1,6 +1,6 @@
+import { AuthService } from './../../../ecommerce/pages/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from '../carrinho/carrinho.service';
-import { AuthService } from 'src/app/pages/auth/auth.service';
 
 @Component({
   selector: 'app-header',

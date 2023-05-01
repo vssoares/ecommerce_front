@@ -9,15 +9,17 @@ import { fadeInOutAnimation } from './shared/animations';
 // material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CarrinhoComponent } from './shared/components/carrinho/carrinho.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    CarrinhoComponent
+    AdminComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -3,24 +3,21 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: "",
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule),
     data: {
-      animation: "HomeComponent"
+      animation: "EcommerceComponent"
     }
   },
   {
-    path: "auth",
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    path: "admin",
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     data: {
-      animation: "AuthComponent"
+      animation: "AdminComponent"
     }
   },
   {
-    path: "produto",
-    loadChildren: () => import('./pages/produto/produto.module').then(m => m.ProdutoModule),
-    data: {
-      animation: "ProdutoComponent"
-    }
+    path: "**",
+    redirectTo: ""
   },
 ];
 

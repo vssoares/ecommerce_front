@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, forkJoin } from 'rxjs';
-import { HomeService } from 'src/app/pages/home/home.service';
+import { HomeService } from 'src/app/ecommerce/pages/home/home.service';
 
 interface Hero {
   nome: string

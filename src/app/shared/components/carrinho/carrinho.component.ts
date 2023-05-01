@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from './carrinho.service';
 import { fadeAnimation, toggleCarrinho } from '../../animations';
-import { AuthService } from 'src/app/pages/auth/auth.service';
+import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
 
 @Component({
   selector: 'app-carrinho',
