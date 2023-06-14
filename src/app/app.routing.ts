@@ -4,16 +4,10 @@ const routes: Routes = [
   {
     path: "",
     loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule),
-    data: {
-      animation: "EcommerceComponent"
-    }
   },
   {
     path: "admin",
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    data: {
-      animation: "AdminComponent"
-    }
   },
   {
     path: "**",

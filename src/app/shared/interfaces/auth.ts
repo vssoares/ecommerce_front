@@ -2,7 +2,6 @@ export interface Login {
    email: string;
    senha: string;
 }
-
 export interface Cadastro {
    name: string,
    email: string,
