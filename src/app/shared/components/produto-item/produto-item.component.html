@@ -14,7 +14,7 @@
             <p class="ml-auto text-sm font-medium text-green-500">20% off</p>
          </div>
          <a routerLink="produto/{{produto.id}}" class="mb-2 flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-green-700">Comprar</a>
-         <a routerLink="produto/{{produto.id}}" class="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700">Adicionar no Carrinho</a>
+         <a (click)="adicionarItemCarrinho()"  class="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-blue-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700">Adicionar no Carrinho</a>
 
       </div>
    </div>

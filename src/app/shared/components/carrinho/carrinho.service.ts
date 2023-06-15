@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, observable, BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
 import { env } from 'src/app/env/env';
 
@@ -15,11 +15,12 @@ export class CarrinhoService {
   carrinhoDados: any;
 
   _carrinhoToggle = new Subject();
-  _carrinhoDados = new Subject();
+
+  private carrinhoDados$ = new Subject();
+  _carrinhoDados = this.carrinhoDados$.asObservable();
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
   ) { }
 
   show(){
@@ -55,11 +56,16 @@ export class CarrinhoService {
 
   setDadosCarrinho(dados: any){
     this.carrinhoDados = dados
-    this._carrinhoDados.next(dados)
+    this.carrinhoDados$.next(dados)
   }
 
   get dados_carrinho(){
     return this.carrinhoDados
   }
 
+
+  adicionarProdutoCarrinho({ produto_id, quantidade }: any): Observable<any>{
+    const params = { carrinho_id: this.dados_carrinho?.id, produto_id, quantidade };
+    return this.http.patch<[]>(this.apiUrl + 'ecommerce/carrinho/produto', params)
+  }
 }

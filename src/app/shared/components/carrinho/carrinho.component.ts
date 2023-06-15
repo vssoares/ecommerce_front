@@ -43,16 +43,23 @@ export class CarrinhoComponent implements OnInit {
       }
     ));
 
-    if (this.usuario.id) {
+    if (this.usuario?.id) {
       this.subs.push(
         this.carrinhoService.getDadosCarrinho(this.usuario.id).subscribe({
           next: (dados: any) => {
-            console.log(dados);
+            this.carrinhoService.setDadosCarrinho(dados)
           }
         })
       )
     }
-    
+
+    this.subs.push(
+      this.carrinhoService._carrinhoDados.subscribe({
+        next: (dados: any) => {
+          this.dadosCarrinho = dados;
+        }
+      })
+    )
 
 
   }
@@ -62,6 +69,14 @@ export class CarrinhoComponent implements OnInit {
 
   closeCarrinho(){
     this.carrinhoService.hide();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs.length) {
+      this.subs.forEach((sub: Subscription)=> {
+        sub.unsubscribe();
+      });
+    }
   }
 
 }
