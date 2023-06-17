@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Subject, Observable, observable, BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
 import { env } from 'src/app/env/env';
-
 @Injectable({
   providedIn: 'root',
 })
