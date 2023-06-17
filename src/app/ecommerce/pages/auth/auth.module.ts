@@ -6,13 +6,13 @@ import { AuthRoutingModule } from './auth.routing';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 @NgModule({
@@ -22,23 +22,18 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     FormsModule,
     ReactiveFormsModule,
 
-    NgxMaskDirective, 
+    NgxMaskDirective,
     NgxMaskPipe,
-    
 
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule, 
+    MatNativeDateModule,
     MatProgressBarModule,
-    MatRadioModule
+    MatRadioModule,
   ],
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    CadastroComponent
-  ],
-  providers: [provideNgxMask()]
+  declarations: [AuthComponent, LoginComponent, CadastroComponent],
+  providers: [provideNgxMask()],
 })
-export class AuthModule { }
+export class AuthModule {}

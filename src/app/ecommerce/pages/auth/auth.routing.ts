@@ -5,23 +5,23 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 
 const routes: Routes = [
   {
-    path: "login",
+    path: 'login',
     component: LoginComponent,
     data: {
       animation: 'LoginComponent',
     },
   },
   {
-    path: "cadastro",
+    path: 'cadastro',
     component: CadastroComponent,
     data: {
       animation: 'CadastroComponent',
     },
-  }
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   providers: [],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

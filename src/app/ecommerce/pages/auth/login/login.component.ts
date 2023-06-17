@@ -8,10 +8,9 @@ import { AuthService } from '../auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  animations: [fadeAnimation]
+  animations: [fadeAnimation],
 })
 export class LoginComponent implements OnInit {
-
   formulario: FormGroup;
   msgErro: any;
 
@@ -19,11 +18,11 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
-  ) { 
+  ) {
     this.formulario = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
-    })
+    });
   }
 
   ngOnInit() {
@@ -34,19 +33,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.formulario.markAllAsTouched()
+    this.formulario.markAllAsTouched();
     if (this.formulario.valid) {
       this.authService.login(this.formulario.value).subscribe(
         (res: any) => {
           this.authService.changeUsuario(res.user);
-          this.authService.setToken(res.token)
+          this.authService.setToken(res.token);
           this.router.navigate(['']);
         },
         (err: any) => {
-          let {message} = err.error
-          this.msgErro = message
+          let { message } = err.error;
+          this.msgErro = message;
         }
-      )
+      );
     }
   }
 }

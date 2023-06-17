@@ -16,11 +16,7 @@ import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminComponent,
-    NotFoundComponent
-  ],
+  declarations: [AppComponent, AdminComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,9 +26,9 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
     ReactiveFormsModule,
 
     // material
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -6,12 +6,16 @@ import { fadeInOutAnimation } from './shared/animations';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeInOutAnimation]
+  animations: [fadeInOutAnimation],
 })
 export class AppComponent {
   title = 'ecommerce_front';
 
   prepareRouteTransition(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    return (
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData['animation']
+    );
   }
 }

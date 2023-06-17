@@ -6,31 +6,23 @@ import { CarrinhoService } from '../carrinho/carrinho.service';
   selector: 'app-produto-item',
   templateUrl: './produto-item.component.html',
   styleUrls: ['./produto-item.component.scss'],
-  animations: [fadeInOutAnimation, fade]
+  animations: [fadeInOutAnimation, fade],
 })
 export class ProdutoItemComponent implements OnInit {
+  @Input('dados') produto: any;
 
-  @Input('dados') produto: any 
+  constructor(private carrinhoService: CarrinhoService) {}
 
-  constructor(
-    private carrinhoService: CarrinhoService
-  ){
+  ngOnInit(): void {}
+
+  adicionarItemCarrinho() {
+    this.carrinhoService
+      .adicionarProdutoCarrinho({ produto_id: this.produto.id, quantidade: 1 })
+      .subscribe({
+        next: dados => {
+          console.log(dados);
+          this.carrinhoService.setDadosCarrinho(dados);
+        },
+      });
   }
-  
-
-  ngOnInit(): void {
-    
-  }
-
-
-  adicionarItemCarrinho(){
-    this.carrinhoService.adicionarProdutoCarrinho({produto_id: this.produto.id, quantidade: 1}).subscribe({
-      next: (dados) => {
-        console.log(dados);
-        this.carrinhoService.setDadosCarrinho(dados)
-      }
-    })
-    
-  }
-
 }

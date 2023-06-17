@@ -8,27 +8,26 @@ import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
   selector: 'app-carrinho',
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css'],
-  animations:[fadeAnimation,toggleCarrinho]
+  animations: [fadeAnimation, toggleCarrinho],
 })
 export class CarrinhoComponent implements OnInit {
   carrinhoStatus: boolean = false;
   dadosCarrinho: any;
   usuario: any;
 
-  subs: Subscription[] = []
+  subs: Subscription[] = [];
 
   constructor(
     private carrinhoService: CarrinhoService,
     private authService: AuthService
-  ) { 
-
+  ) {
     this.subs.push(
       this.authService.currentUsuario.subscribe({
-        next: (usuario)  => {
-          this.usuario = usuario
-        }
-      }
-    ));
+        next: usuario => {
+          this.usuario = usuario;
+        },
+      })
+    );
 
     this.subs.push(
       this.carrinhoService._carrinhoToggle.subscribe({
@@ -39,44 +38,40 @@ export class CarrinhoComponent implements OnInit {
           } else {
             document.querySelector('body')?.classList.remove('overflow-hidden');
           }
-        }
-      }
-    ));
+        },
+      })
+    );
 
     if (this.usuario?.id) {
       this.subs.push(
         this.carrinhoService.getDadosCarrinho(this.usuario.id).subscribe({
           next: (dados: any) => {
-            this.carrinhoService.setDadosCarrinho(dados)
-          }
+            this.carrinhoService.setDadosCarrinho(dados);
+          },
         })
-      )
+      );
     }
 
     this.subs.push(
       this.carrinhoService._carrinhoDados.subscribe({
         next: (dados: any) => {
           this.dadosCarrinho = dados;
-        }
+        },
       })
-    )
-
-
+    );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  closeCarrinho(){
+  closeCarrinho() {
     this.carrinhoService.hide();
   }
 
   ngOnDestroy(): void {
     if (this.subs.length) {
-      this.subs.forEach((sub: Subscription)=> {
+      this.subs.forEach((sub: Subscription) => {
         sub.unsubscribe();
       });
     }
   }
-
 }

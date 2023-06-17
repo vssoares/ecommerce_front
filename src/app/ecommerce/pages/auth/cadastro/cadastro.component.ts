@@ -12,19 +12,18 @@ import { AuthService } from '../auth.service';
   animations: [inOutAnimation, fadeAnimation],
 })
 export class CadastroComponent implements OnInit {
-
-  formulario: FormGroup
+  formulario: FormGroup;
   msgErro: any;
   formEvolucao: any = 0;
   numeroItens: any = 8;
   calculo: any = 100 / this.numeroItens;
 
-  _etapa: any
+  _etapa: any;
   get etapa() {
-    return this._etapa
+    return this._etapa;
   }
   set etapa(valor: any) {
-    this._etapa = (this.calculo) * valor
+    this._etapa = this.calculo * valor;
   }
 
   constructor(
@@ -32,8 +31,7 @@ export class CadastroComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private adapter: DateAdapter<any>
-  ) { 
-
+  ) {
     this.formulario = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
@@ -42,21 +40,19 @@ export class CadastroComponent implements OnInit {
       confirmarPassword: ['', Validators.required],
       celular: ['', Validators.required],
       data_nascimento: ['', Validators.required],
-      sexo: ['', Validators.required]
-    })
+      sexo: ['', Validators.required],
+    });
 
-    this.formulario.valueChanges.subscribe(
-      (res: any) => {
-        let count = 0;
-        for (let key in res) {
-          if (this.formulario.get(key)?.valid) {
-            count++;
-          }
+    this.formulario.valueChanges.subscribe((res: any) => {
+      let count = 0;
+      for (let key in res) {
+        if (this.formulario.get(key)?.valid) {
+          count++;
         }
-        this.etapa = count
-        this.formEvolucao = this.etapa
       }
-    )
+      this.etapa = count;
+      this.formEvolucao = this.etapa;
+    });
     // altera o locale do datepicker para dd/mm/yyyy
     this.adapter.setLocale('pt-BR');
   }
@@ -75,7 +71,7 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastro() {
-    this.formulario.markAllAsTouched()
+    this.formulario.markAllAsTouched();
     if (this.formulario.valid) {
       this.authService.cadastrarUsuario(this.formulario.value).subscribe(
         (res: any) => {
@@ -83,11 +79,10 @@ export class CadastroComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         (err: any) => {
-          let {message} = err.error
-          this.msgErro = message
+          let { message } = err.error;
+          this.msgErro = message;
         }
-      )
+      );
     }
   }
-
 }
