@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { AuthService } from './../../../ecommerce/pages/auth/auth.service';
 import { Component } from '@angular/core';
 import { CarrinhoService } from '../carrinho/carrinho.service';
@@ -9,6 +10,9 @@ import { CarrinhoService } from '../carrinho/carrinho.service';
 })
 export class HeaderComponent {
   usuario: any;
+  subs: Subscription[] = [];
+
+  qtdCarrinho?: number;
 
   constructor(
     private carrinhoService: CarrinhoService,
@@ -22,6 +26,16 @@ export class HeaderComponent {
       const user = this.authService.decodePayloadJWT();
       this.authService.changeUsuario(user?.user);
     }
+
+    this.subs.push(
+      this.carrinhoService._carrinhoDados.subscribe({
+        next: (dados: any) => {
+          console.log(dados);
+
+          this.qtdCarrinho = dados?.itens.length;
+        },
+      })
+    );
   }
 
   logout() {
