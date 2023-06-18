@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   getHeaders(): HttpHeaders {
-    let header = new HttpHeaders({
+    const header = new HttpHeaders({
       'Content-Type': 'application/json',
       'ngrok-skip-browser-warning': '69420',
     });
@@ -25,6 +25,10 @@ export class AuthService {
 
   login(usuario: Login) {
     return this.http.post(`${this.url}auth/user/login`, usuario);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 
   private usuarioDados = new BehaviorSubject('');

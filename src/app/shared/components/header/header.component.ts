@@ -7,7 +7,7 @@ import { CarrinhoService } from '../carrinho/carrinho.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   usuario: any;
 
   constructor(
@@ -19,12 +19,15 @@ export class HeaderComponent implements OnInit {
     });
 
     if (!this.usuario) {
-      let user = this.authService.decodePayloadJWT();
+      const user = this.authService.decodePayloadJWT();
       this.authService.changeUsuario(user?.user);
     }
   }
 
-  ngOnInit() {}
+  logout() {
+    this.authService.logout();
+    this.usuario = false;
+  }
 
   openCarrinho() {
     this.carrinhoService.show();

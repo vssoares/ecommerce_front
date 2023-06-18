@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CarrinhoService } from './carrinho.service';
 import { fadeAnimation, toggleCarrinho } from '../../animations';
 import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
   styleUrls: ['./carrinho.component.css'],
   animations: [fadeAnimation, toggleCarrinho],
 })
-export class CarrinhoComponent implements OnInit {
-  carrinhoStatus: boolean = false;
+export class CarrinhoComponent implements OnDestroy {
+  carrinhoStatus = false;
   dadosCarrinho: any;
   usuario: any;
 
@@ -42,16 +42,6 @@ export class CarrinhoComponent implements OnInit {
       })
     );
 
-    if (this.usuario?.id) {
-      this.subs.push(
-        this.carrinhoService.getDadosCarrinho(this.usuario.id).subscribe({
-          next: (dados: any) => {
-            this.carrinhoService.setDadosCarrinho(dados);
-          },
-        })
-      );
-    }
-
     this.subs.push(
       this.carrinhoService._carrinhoDados.subscribe({
         next: (dados: any) => {
@@ -59,12 +49,34 @@ export class CarrinhoComponent implements OnInit {
         },
       })
     );
-  }
 
-  ngOnInit() {}
+    this.subs.push(
+      this.carrinhoService._atualizarCarrinho.subscribe({
+        next: (dados: any) => {
+          if (dados) {
+            this.carregarDadosCarrinho();
+          }
+        },
+      })
+    );
+
+    if (this.usuario?.id) {
+      this.carregarDadosCarrinho();
+    }
+  }
 
   closeCarrinho() {
     this.carrinhoService.hide();
+  }
+
+  carregarDadosCarrinho() {
+    this.subs.push(
+      this.carrinhoService.getDadosCarrinho().subscribe({
+        next: (dados: any) => {
+          this.carrinhoService.setDadosCarrinho(dados);
+        },
+      })
+    );
   }
 
   ngOnDestroy(): void {

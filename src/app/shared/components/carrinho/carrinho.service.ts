@@ -17,7 +17,10 @@ export class CarrinhoService {
   private carrinhoDados$ = new Subject();
   _carrinhoDados = this.carrinhoDados$.asObservable();
 
-  constructor(private http: HttpClient) {}
+  private atualizarCarrinho$ = new Subject();
+  _atualizarCarrinho = this.atualizarCarrinho$.asObservable();
+
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   show() {
     this.carrinhoStatus = true;
@@ -43,9 +46,10 @@ export class CarrinhoService {
     this._carrinhoToggle.next(this.carrinhoStatus);
   }
 
-  getDadosCarrinho(usuario_id: number): Observable<any[]> {
+  getDadosCarrinho(): Observable<any[]> {
+    const { user } = this.authService.decodePayloadJWT();
     const params = {
-      usuario_id,
+      usuario_id: user?.id,
     };
     return this.http.get<[]>(this.apiUrl + 'ecommerce/carrinho', { params });
   }
@@ -53,6 +57,10 @@ export class CarrinhoService {
   setDadosCarrinho(dados: any) {
     this.carrinhoDados = dados;
     this.carrinhoDados$.next(dados);
+  }
+
+  atualizarCarrinho(dados: any) {
+    this.atualizarCarrinho$.next(dados);
   }
 
   get dados_carrinho() {

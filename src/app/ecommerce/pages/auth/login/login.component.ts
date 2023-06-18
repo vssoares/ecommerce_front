@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeAnimation } from 'src/app/shared/animations';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
+import { CarrinhoService } from 'src/app/shared/components/carrinho/carrinho.service';
 
 @Component({
   selector: 'app-login',
@@ -10,26 +12,21 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css'],
   animations: [fadeAnimation],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnDestroy {
   formulario: FormGroup;
   msgErro: any;
+  subs: Subscription[] = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private carrinhoService: CarrinhoService
   ) {
     this.formulario = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
-  }
-
-  ngOnInit() {
-    // this.formulario.setValue({
-    //   email: 'vsss23@hotmail.com',
-    //   password: 'vs23012001',
-    // })
   }
 
   login() {
@@ -40,12 +37,20 @@ export class LoginComponent implements OnInit {
           this.authService.changeUsuario(res.user);
           this.authService.setToken(res.token);
           this.router.navigate(['']);
+
+          this.carrinhoService.atualizarCarrinho(true);
         },
         (err: any) => {
-          let { message } = err.error;
+          const { message } = err.error;
           this.msgErro = message;
         }
       );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach((sub: Subscription) => {
+      sub.unsubscribe();
+    });
   }
 }

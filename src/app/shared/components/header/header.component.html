@@ -112,7 +112,9 @@
           *ngIf="usuario"
           class="space-y-6 border-t border-gray-200 py-6 px-4">
           <div class="ml-auto flex items-center">
-            <a class="group cursor-pointer flex items-center p-2">
+            <a
+              (click)="logout()"
+              class="group cursor-pointer flex items-center p-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -242,7 +244,9 @@
 
           <div class="ml-auto flex items-center">
             <div *ngIf="usuario" class="ml-auto flex items-center">
-              <a class="group cursor-pointer flex items-center p-2">
+              <a
+                (click)="logout()"
+                class="group cursor-pointer flex items-center p-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
