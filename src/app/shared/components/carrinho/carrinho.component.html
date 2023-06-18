@@ -36,24 +36,12 @@
             </button>
           </div>
         </div>
-
-        <!-- {
-          "carrinho_id": 3,
-          "produto_id": 1,
-          "preco_unitario": 110,
-          "quantidade": 1,
-          "created_at": "2023-06-15T02:08:23.222Z",
-          "updated_at": null,
-          "produto": {
-            "id": 1,
-            "nome": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-            "preco": 110,
-            "descricao": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-            "imagem": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-          }
-        } -->
-
-        <div class="mt-8" *ngIf="dadosCarrinho.itens.length; else semItens">
+        <div @fadeAnimation class="mt-8" *ngIf="!dadosCarrinho?.itens?.length">
+          <div class="PageCart-styles__EmptyCart-sc-d6480e32-3 bbLDQe">
+            <p class="text-lg">O seu carrinho está vazio.</p>
+          </div>
+        </div>
+        <div @inOutAnimation class="mt-8" *ngIf="dadosCarrinho?.itens?.length">
           <div class="flow-root">
             <ul role="list" class="-my-6 divide-y divide-gray-200">
               <li class="flex py-6" *ngFor="let item of dadosCarrinho.itens">
@@ -96,18 +84,12 @@
             </ul>
           </div>
         </div>
-
-        <ng-template class="mt-8" #semItens>
-          <div class="PageCart-styles__EmptyCart-sc-d6480e32-3 bbLDQe">
-            <p class="text-lg">O seu carrinho está vazio.</p>
-          </div>
-        </ng-template>
       </div>
 
       <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
         <div class="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          <p>{{ dadosCarrinho.valor_total }}</p>
+          <p>{{ dadosCarrinho?.valor_total }}</p>
         </div>
         <div class="mt-6">
           <a

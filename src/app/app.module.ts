@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing';
-import { fadeInOutAnimation } from './shared/animations';
+import { routeAnimations } from './shared/animations';
 
 // material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';

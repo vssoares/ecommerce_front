@@ -1,14 +1,18 @@
 import { Subscription } from 'rxjs';
 import { Component, OnDestroy } from '@angular/core';
 import { CarrinhoService } from './carrinho.service';
-import { fadeAnimation, toggleCarrinho } from '../../animations';
+import {
+  fadeAnimation,
+  inOutAnimation,
+  toggleCarrinho,
+} from '../../animations';
 import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
 
 @Component({
   selector: 'app-carrinho',
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.css'],
-  animations: [fadeAnimation, toggleCarrinho],
+  animations: [fadeAnimation, toggleCarrinho, inOutAnimation],
 })
 export class CarrinhoComponent implements OnDestroy {
   carrinhoStatus = false;
@@ -34,9 +38,9 @@ export class CarrinhoComponent implements OnDestroy {
         next: (status: any) => {
           this.carrinhoStatus = !this.carrinhoStatus;
           if (status) {
-            document.querySelector('body')?.classList.add('overflow-hidden');
+            document.querySelector('html')?.classList.add('modal-open');
           } else {
-            document.querySelector('body')?.classList.remove('overflow-hidden');
+            document.querySelector('html')?.classList.remove('modal-open');
           }
         },
       })
@@ -44,7 +48,7 @@ export class CarrinhoComponent implements OnDestroy {
 
     this.subs.push(
       this.carrinhoService._carrinhoDados.subscribe({
-        next: (dados: any) => {
+        next: dados => {
           this.dadosCarrinho = dados;
         },
       })
@@ -52,7 +56,7 @@ export class CarrinhoComponent implements OnDestroy {
 
     this.subs.push(
       this.carrinhoService._atualizarCarrinho.subscribe({
-        next: (dados: any) => {
+        next: dados => {
           if (dados) {
             this.carregarDadosCarrinho();
           }
@@ -68,7 +72,7 @@ export class CarrinhoComponent implements OnDestroy {
   carregarDadosCarrinho() {
     this.subs.push(
       this.carrinhoService.getDadosCarrinho().subscribe({
-        next: (dados: any) => {
+        next: dados => {
           this.carrinhoService.setDadosCarrinho(dados);
         },
       })
@@ -76,11 +80,13 @@ export class CarrinhoComponent implements OnDestroy {
   }
 
   removerProduto(produto: any) {
-    this.carrinhoService.removerProdutoCarrinho(produto).subscribe({
-      next: (dados: any) => {
-        console.log(dados);
-      },
-    });
+    this.subs.push(
+      this.carrinhoService.removerProdutoCarrinho(produto).subscribe({
+        next: dados => {
+          this.carrinhoService.setDadosCarrinho(dados);
+        },
+      })
+    );
   }
 
   closeCarrinho() {

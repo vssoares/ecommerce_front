@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { fadeInOutAnimation } from './shared/animations';
+import { routeAnimations } from './shared/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fadeInOutAnimation],
+  animations: [routeAnimations],
 })
 export class AppComponent {
   title = 'ecommerce_front';

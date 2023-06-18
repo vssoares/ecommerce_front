@@ -1,13 +1,13 @@
 import { trigger, animate, transition, style } from '@angular/animations';
 
-export const fadeInOutAnimation = trigger('routeAnimations', [
+export const routeAnimations = trigger('routeAnimations', [
   transition('* <=> *', [
     style({ opacity: 0 }),
     animate('0.5s', style({ opacity: 1 })),
   ]),
 ]);
 
-export let fade = trigger('fade', [
+export const fade = trigger('fade', [
   transition(':enter', [style({ opacity: 0 }), animate(1000)]),
 ]);
 

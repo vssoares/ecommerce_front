@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { fade, fadeInOutAnimation } from '../../animations';
+import { fade, routeAnimations } from '../../animations';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 
 @Component({
   selector: 'app-produto-item',
   templateUrl: './produto-item.component.html',
   styleUrls: ['./produto-item.component.scss'],
-  animations: [fadeInOutAnimation, fade],
+  animations: [routeAnimations, fade],
 })
 export class ProdutoItemComponent implements OnInit {
   @Input('dados') produto: any;

@@ -1,5 +1,5 @@
 import { AuthService } from './../../../ecommerce/pages/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 
 @Component({
@@ -27,6 +27,7 @@ export class HeaderComponent {
   logout() {
     this.authService.logout();
     this.usuario = false;
+    this.carrinhoService.setDadosCarrinho({});
   }
 
   openCarrinho() {
