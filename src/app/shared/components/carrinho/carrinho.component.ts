@@ -65,10 +65,6 @@ export class CarrinhoComponent implements OnDestroy {
     }
   }
 
-  closeCarrinho() {
-    this.carrinhoService.hide();
-  }
-
   carregarDadosCarrinho() {
     this.subs.push(
       this.carrinhoService.getDadosCarrinho().subscribe({
@@ -77,6 +73,18 @@ export class CarrinhoComponent implements OnDestroy {
         },
       })
     );
+  }
+
+  removerProduto(produto: any) {
+    this.carrinhoService.removerProdutoCarrinho(produto).subscribe({
+      next: (dados: any) => {
+        console.log(dados);
+      },
+    });
+  }
+
+  closeCarrinho() {
+    this.carrinhoService.hide();
   }
 
   ngOnDestroy(): void {
