@@ -83,6 +83,7 @@ export class CarrinhoComponent implements OnDestroy {
     this.subs.push(
       this.carrinhoService.removerProdutoCarrinho(produto).subscribe({
         next: dados => {
+          this.dadosCarrinho.itens = this.dadosCarrinho.itens.filter(item => item.id != produto.id)
           // Remove o item do carrinho após um tempo para permitir a execução da animação
           setTimeout(() => {
             this.carrinhoService.setDadosCarrinho(dados);
