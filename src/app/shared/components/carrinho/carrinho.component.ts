@@ -86,7 +86,7 @@ export class CarrinhoComponent implements OnDestroy {
           // Remove o item do carrinho após um tempo para permitir a execução da animação
           setTimeout(() => {
             this.carrinhoService.setDadosCarrinho(dados);
-          }, 1000);
+          }, 400);
         },
       })
     );
