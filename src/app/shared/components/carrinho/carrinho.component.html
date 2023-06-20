@@ -10,49 +10,53 @@
   class="lista pointer-events-none z-40 fixed inset-y-0 right-0 flex max-w-full pl-10">
   <div class="pointer-events-auto w-screen max-w-md">
     <div class="flex h-full flex-col bg-white shadow-xl">
-      <div class="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
-        <div class="flex items-start justify-between">
-          <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
-            Carrinho
-          </h2>
-          <div class="ml-3 flex h-7 items-center">
-            <button
-              (click)="closeCarrinho()"
-              type="button"
-              class="-m-2 p-2 text-gray-400 hover:text-gray-500">
-              <span class="sr-only">Close panel</span>
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                aria-hidden="true">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+      <div class="flex items-start justify-between pt-6 px-6">
+        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+          Carrinho
+        </h2>
+        <div class="ml-3 flex h-7 items-center">
+          <button
+            (click)="closeCarrinho()"
+            type="button"
+            class="-m-2 p-2 text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Close panel</span>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
-        <div @fadeAnimation class="mt-8" *ngIf="!dadosCarrinho?.itens?.length">
+      </div>
+      <div class="flex-1 overflow-y-auto py-0 px-4 sm:px-6">
+        <div
+          @fadeAnimation
+          class="mt-8"
+          *ngIf="!dadosCarrinho?.itens?.length && !removendoProduto">
           <div class="PageCart-styles__EmptyCart-sc-d6480e32-3 bbLDQe">
             <p class="text-lg">O seu carrinho está vazio.</p>
           </div>
         </div>
-        <div @inOutAnimation class="mt-8" *ngIf="dadosCarrinho?.itens?.length">
+        <div *ngIf="dadosCarrinho?.itens?.length">
           <div class="flow-root">
-            <ul role="list" class="-my-6 divide-y divide-gray-200">
+            <ul role="list" class="divide-y divide-gray-200">
               <li class="flex py-6" *ngFor="let item of dadosCarrinho.itens">
                 <div
+                  [@fadeAnimation]
                   class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img
                     [src]="item.produto.imagem"
                     [alt]="item.produto.imagem"
                     class="h-full w-full object-cover object-center" />
                 </div>
-                <div class="ml-4 flex flex-1 flex-col">
+                <div [@fadeAnimation] class="ml-4 flex flex-1 flex-col">
                   <div>
                     <div
                       class="flex justify-between text-base font-medium text-gray-900">
@@ -68,12 +72,31 @@
                     <p class="mt-1 text-sm text-gray-500">Salmon</p>
                   </div>
                   <div class="flex flex-1 items-end justify-between text-sm">
-                    <p class="text-gray-500">Qtd {{ item.quantidade }}</p>
-
+                    <div class="custom-number-input h-10 w-24">
+                      <div
+                        class="flex flex-row h-7 w-full rounded-lg relative bg-transparent mt-1">
+                        <button
+                          (click)="removerProduto(item)"
+                          class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                          <span class="text-1xl font-thin">−</span>
+                        </button>
+                        <input
+                          type="number"
+                          disabled
+                          class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-1xl hover:text-black focus:text-black md:text-basecursor-default flex items-center text-gray-700"
+                          name="custom-input-number"
+                          [value]="item?.quantidade" />
+                        <button
+                          (click)="adicionarProduto(item)"
+                          class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                          <span class="text-1xl font-thin">+</span>
+                        </button>
+                      </div>
+                    </div>
                     <div class="flex">
                       <button
                         type="button"
-                        (click)="removerProduto(item)"
+                        (click)="removerProduto(item, true)"
                         class="font-medium text-indigo-600 hover:text-indigo-500">
                         Remover
                       </button>

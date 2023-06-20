@@ -1,6 +1,18 @@
-::ng-deep html.modal-open {
-   overflow: hidden !important;
-   position: fixed !important;
-   width: 100% !important;
-   padding-right: 15px;
+::ng-deep body.carrinho-open {
+  overflow: hidden !important;
+  padding-right: 15px;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-number-input input:focus {
+  outline: none !important;
+}
+
+.custom-number-input button:focus {
+  outline: none !important;
 }

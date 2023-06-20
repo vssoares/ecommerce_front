@@ -18,6 +18,7 @@ export class CarrinhoComponent implements OnDestroy {
   carrinhoStatus = false;
   dadosCarrinho: any;
   usuario: any;
+  removendoProduto = false;
 
   subs: Subscription[] = [];
 
@@ -38,9 +39,9 @@ export class CarrinhoComponent implements OnDestroy {
         next: (status: any) => {
           this.carrinhoStatus = !this.carrinhoStatus;
           if (status) {
-            document.querySelector('html')?.classList.add('modal-open');
+            document.querySelector('body')?.classList.add('carrinho-open');
           } else {
-            document.querySelector('html')?.classList.remove('modal-open');
+            document.querySelector('body')?.classList.remove('carrinho-open');
           }
         },
       })
@@ -79,17 +80,28 @@ export class CarrinhoComponent implements OnDestroy {
     );
   }
 
-  removerProduto(produto: any) {
-    this.subs.push(
-      this.carrinhoService.removerProdutoCarrinho(produto).subscribe({
-        next: dados => {
-          this.dadosCarrinho.itens = this.dadosCarrinho.itens.filter(item => item.id != produto.id)
-          // Remove o item do carrinho após um tempo para permitir a execução da animação
-          setTimeout(() => {
-            this.carrinhoService.setDadosCarrinho(dados);
-          }, 400);
-        },
+  adicionarProduto(produto: any) {
+    this.carrinhoService
+      .adicionarProdutoCarrinho({
+        produto_id: produto.produto_id,
+        quantidade: 1,
       })
+      .subscribe({
+        next: dados => {
+          this.carrinhoService.setDadosCarrinho(dados);
+        },
+      });
+  }
+
+  removerProduto(produto: any, isTudo?: boolean) {
+    this.subs.push(
+      this.carrinhoService
+        .removerProdutoCarrinho({ ...produto, isTudo })
+        .subscribe({
+          next: dados => {
+            this.carrinhoService.setDadosCarrinho(dados);
+          },
+        })
     );
   }
 

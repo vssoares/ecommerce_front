@@ -12,7 +12,7 @@ export class HeaderComponent {
   usuario: any;
   subs: Subscription[] = [];
 
-  qtdCarrinho?: number;
+  qtdCarrinho = 0;
 
   constructor(
     private carrinhoService: CarrinhoService,

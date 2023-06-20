@@ -79,14 +79,21 @@ export class CarrinhoService {
     );
   }
 
-  removerProdutoCarrinho({ produto_id }: any): Observable<any> {
+  removerProdutoCarrinho({ produto_id, isTudo }: any): Observable<any> {
     const params = {
       carrinho_id: this.dados_carrinho?.id,
       produto_id,
     };
-    return this.http.patch<[]>(
-      this.apiUrl + 'ecommerce/carrinho/produto/remover',
-      params
-    );
+    if (isTudo) {
+      return this.http.patch<[]>(
+        this.apiUrl + 'ecommerce/carrinho/produto/remover/tudo',
+        params
+      );
+    } else {
+      return this.http.patch<[]>(
+        this.apiUrl + 'ecommerce/carrinho/produto/remover',
+        params
+      );
+    }
   }
 }
