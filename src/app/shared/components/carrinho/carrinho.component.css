@@ -16,3 +16,10 @@ input[type='number']::-webkit-outer-spin-button {
 .custom-number-input button:focus {
   outline: none !important;
 }
+
+.limite-texto {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}

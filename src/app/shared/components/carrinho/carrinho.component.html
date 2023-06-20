@@ -62,12 +62,15 @@
                       class="flex justify-between text-base font-medium text-gray-900">
                       <h3>
                         <a
+                          [title]="item.produto.nome"
                           routerLink="produto/{{ item.produto.id }}"
-                          href="#"
-                          >{{ item.produto.nome }}</a
+                          href="#">
+                          <p class="limite-texto">{{ item.produto.nome }}</p></a
                         >
                       </h3>
-                      <p class="ml-4">{{ item.produto.preco }}</p>
+                      <p class="ml-4">
+                        {{ item.produto.preco | currency : 'BRL' }}
+                      </p>
                     </div>
                     <p class="mt-1 text-sm text-gray-500">Salmon</p>
                   </div>
@@ -112,7 +115,7 @@
       <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
         <div class="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          <p>{{ dadosCarrinho?.valor_total }}</p>
+          <p>{{ dadosCarrinho?.valor_total | currency : 'BRL' }}</p>
         </div>
         <div class="mt-6">
           <a
