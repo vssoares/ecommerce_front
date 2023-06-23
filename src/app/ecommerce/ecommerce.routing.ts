@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EcommerceComponent } from './ecommerce.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProdutoComponent } from './pages/produto/produto.component';
 
 const routes: Routes = [
   {
@@ -9,8 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () =>
-          import('./pages/home/home.module').then(m => m.HomeModule),
+        component: HomeComponent,
       },
       {
         path: 'auth',
@@ -18,9 +19,8 @@ const routes: Routes = [
           import('./pages/auth/auth.module').then(m => m.AuthModule),
       },
       {
-        path: 'produto',
-        loadChildren: () =>
-          import('./pages/produto/produto.module').then(m => m.ProdutoModule),
+        path: 'produto/:id',
+        component: ProdutoComponent,
       },
     ],
   },

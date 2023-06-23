@@ -69,10 +69,12 @@
                         >
                       </h3>
                       <p class="ml-4">
-                        {{ item.produto.preco | currency : 'BRL' }}
+                        {{ item?.preco_total | currency : 'BRL' }}
                       </p>
                     </div>
-                    <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Preço {{ item?.preco_unitario | currency : 'BRL' }}
+                    </p>
                   </div>
                   <div class="flex flex-1 items-end justify-between text-sm">
                     <div class="custom-number-input h-10 w-24">
