@@ -7,7 +7,8 @@ export interface Manu {
 
 export interface Icone {
   nome: string;
-  classes: string;
+  classes?: string;
+  active?: string;
 }
 
 @Component({
@@ -23,16 +24,18 @@ export class MenuClienteComponent implements OnInit {
       nome: 'Resumo da Conta',
       link: 'resumo',
       icone: {
-        nome: 'user-profile',
+        nome: 'icone-user-profile',
         classes: 'text-gray-400 group-hover:text-gray-500',
+        active: '',
       },
     },
     {
       nome: 'Dados Básicos',
       link: 'dados-basicos',
       icone: {
-        nome: 'user-profile',
+        nome: 'icone-user-endereco',
         classes: 'text-gray-400 group-hover:text-gray-500',
+        active: '',
       },
     },
   ];

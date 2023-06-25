@@ -47,7 +47,7 @@ export class CarrinhoService {
   }
 
   getDadosCarrinho(): Observable<any[]> {
-    const { user } = this.authService.decodePayloadJWT();
+    const { user } = this.authService.getUsuario();
     const params = {
       usuario_id: user?.id,
     };

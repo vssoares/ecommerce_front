@@ -46,7 +46,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  public decodePayloadJWT(): any {
+  public getUsuario(): any {
     try {
       return jwt_decode(this.getToken());
     } catch (error) {

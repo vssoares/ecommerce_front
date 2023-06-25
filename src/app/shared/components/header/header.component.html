@@ -116,7 +116,11 @@
             <a
               (click)="logout()"
               class="group cursor-pointer flex items-center p-2">
-              <app-icon nome="user-profile" classe="text-gray-400"></app-icon>
+              <app-icon
+                [icone]="{
+                  nome: 'icone-user-profile',
+                  classes: 'text-gray-400 group-hover:text-gray-500'
+                }"></app-icon>
             </a>
           </div>
         </div>
@@ -239,8 +243,10 @@
                 (click)="logout()"
                 class="group cursor-pointer flex items-center p-2">
                 <app-icon
-                  nome="user-profile"
-                  classe="text-gray-400 group-hover:text-gray-500"></app-icon>
+                  [icone]="{
+                    nome: 'icone-user-profile',
+                    classes: 'text-gray-400 group-hover:text-gray-500'
+                  }"></app-icon>
               </a>
             </div>
 

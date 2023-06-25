@@ -23,7 +23,7 @@ export class HeaderComponent {
     });
 
     if (!this.usuario) {
-      const user = this.authService.decodePayloadJWT();
+      const user = this.authService.getUsuario();
       this.authService.changeUsuario(user?.user);
     }
 
