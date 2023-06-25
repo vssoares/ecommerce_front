@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, delay } from 'rxjs';
 import { HomeService } from './home.service';
 
 @Component({
@@ -12,12 +12,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   constructor(private service: HomeService) {
-    this.produtos = [
-      { skeleton: true },
-      { skeleton: true },
-      { skeleton: true },
-      { skeleton: true },
-    ];
+    this.produtos = [];
+
+    for (let i = 0; i < 20; i++) {
+      this.produtos.push({ skeleton: true });
+    }
     this.carregarProdutos();
   }
 
@@ -27,9 +26,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   carregarProdutos() {
     this.subs.push(
-      this.service.getProdutos().subscribe(dados => {
-        this.produtos = dados;
-      })
+      this.service
+        .getProdutos()
+        .pipe(delay(2000))
+        .subscribe({
+          next: (dados: any) => {
+            this.produtos = dados;
+          },
+        })
     );
   }
 

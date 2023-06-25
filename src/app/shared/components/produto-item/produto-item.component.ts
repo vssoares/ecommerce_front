@@ -1,12 +1,17 @@
 import { Component, Input } from '@angular/core';
-import { fade, fadeAnimation, routeAnimations } from '../../animations';
+import {
+  fade,
+  fadeAnimation,
+  inOutAnimation,
+  routeAnimations,
+} from '../../animations';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 
 @Component({
   selector: 'app-produto-item',
   templateUrl: './produto-item.component.html',
   styleUrls: ['./produto-item.component.scss'],
-  animations: [routeAnimations, fade, fadeAnimation],
+  animations: [routeAnimations, fade, fadeAnimation, inOutAnimation],
 })
 export class ProdutoItemComponent {
   @Input() produto: any;
