@@ -19,6 +19,11 @@ const routes: Routes = [
           import('./pages/auth/auth.module').then(m => m.AuthModule),
       },
       {
+        path: 'cliente',
+        loadChildren: () =>
+          import('./pages/cliente/cliente.module').then(m => m.ClienteModule),
+      },
+      {
         path: 'produto/:id',
         component: ProdutoComponent,
       },
