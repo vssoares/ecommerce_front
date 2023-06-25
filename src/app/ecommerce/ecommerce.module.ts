@@ -7,6 +7,7 @@ import { EcommerceRoutingModule } from './ecommerce.routing';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { ProdutoItemComponent } from '../shared/components/produto-item/produto-item.component';
+import { IconModule } from '../shared/components/icon/icon.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { ProdutoItemComponent } from '../shared/components/produto-item/produto-
     ProdutoItemComponent,
   ],
   exports: [ProdutoComponent, HomeComponent, ProdutoItemComponent],
-  imports: [CommonModule, EcommerceRoutingModule],
+  imports: [CommonModule, EcommerceRoutingModule, IconModule],
 })
 export class EcommerceModule {}

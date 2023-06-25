@@ -1,0 +1,13 @@
+<div
+  [@fadeAnimation]
+  *ngIf="loaderStatus"
+  class="absolute top-0 left-0 right-0 bottom-0"
+  style="z-index: 20000">
+  <div
+    class="flex items-center justify-center min-h-screen p-5 opacity-50 bg-gray-100 min-w-screen">
+    <div class="flex space-x-2">
+      <div
+        class="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-800"></div>
+    </div>
+  </div>
+</div>

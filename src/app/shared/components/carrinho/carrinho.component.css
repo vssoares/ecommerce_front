@@ -1,4 +1,4 @@
-::ng-deep body.carrinho-open {
+::ng-deep body.body-overflow-hidden {
   overflow: hidden !important;
   padding-right: 15px;
 }

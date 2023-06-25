@@ -30,8 +30,6 @@ export class HeaderComponent {
     this.subs.push(
       this.carrinhoService._carrinhoDados.subscribe({
         next: (dados: any) => {
-          console.log(dados);
-
           this.qtdCarrinho = dados?.itens.length;
         },
       })

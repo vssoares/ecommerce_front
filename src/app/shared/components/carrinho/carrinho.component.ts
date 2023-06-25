@@ -39,9 +39,13 @@ export class CarrinhoComponent implements OnDestroy {
         next: (status: any) => {
           this.carrinhoStatus = !this.carrinhoStatus;
           if (status) {
-            document.querySelector('body')?.classList.add('carrinho-open');
+            document
+              .querySelector('body')
+              ?.classList.add('body-overflow-hidden');
           } else {
-            document.querySelector('body')?.classList.remove('carrinho-open');
+            document
+              .querySelector('body')
+              ?.classList.remove('body-overflow-hidden');
           }
         },
       })
