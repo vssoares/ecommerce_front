@@ -43,15 +43,17 @@ export class CadastroComponent implements OnInit {
       sexo: ['', Validators.required],
     });
 
-    this.formulario.valueChanges.subscribe((res: any) => {
-      let count = 0;
-      for (let key in res) {
-        if (this.formulario.get(key)?.valid) {
-          count++;
+    this.formulario.valueChanges.subscribe({
+      next: (res: any) => {
+        let count = 0;
+        for (const key in res) {
+          if (this.formulario.get(key)?.valid) {
+            count++;
+          }
         }
-      }
-      this.etapa = count;
-      this.formEvolucao = this.etapa;
+        this.etapa = count;
+        this.formEvolucao = this.etapa;
+      },
     });
     // altera o locale do datepicker para dd/mm/yyyy
     this.adapter.setLocale('pt-BR');
@@ -73,16 +75,16 @@ export class CadastroComponent implements OnInit {
   cadastro() {
     this.formulario.markAllAsTouched();
     if (this.formulario.valid) {
-      this.authService.cadastrarUsuario(this.formulario.value).subscribe(
-        (res: any) => {
+      this.authService.cadastrarUsuario(this.formulario.value).subscribe({
+        next: (res: any) => {
           console.log(res);
           this.router.navigate(['/login']);
         },
-        (err: any) => {
-          let { message } = err.error;
+        error: (err: any) => {
+          const { message } = err.error;
           this.msgErro = message;
-        }
-      );
+        },
+      });
     }
   }
 }

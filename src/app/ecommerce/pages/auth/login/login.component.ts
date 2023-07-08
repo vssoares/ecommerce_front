@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeAnimation } from 'src/app/shared/animations';
@@ -17,12 +17,10 @@ export class LoginComponent implements OnDestroy {
   msgErro: any;
   subs: Subscription[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private carrinhoService: CarrinhoService
-  ) {
+  authService = inject(AuthService);
+  carrinhoService = inject(CarrinhoService);
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.formulario = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -32,19 +30,19 @@ export class LoginComponent implements OnDestroy {
   login() {
     this.formulario.markAllAsTouched();
     if (this.formulario.valid) {
-      this.authService.login(this.formulario.value).subscribe(
-        (res: any) => {
+      this.authService.login(this.formulario.value).subscribe({
+        next: (res: any) => {
           this.authService.changeUsuario(res.user);
           this.authService.setToken(res.token);
           this.router.navigate(['']);
 
           this.carrinhoService.refreshCarrinho(true);
         },
-        (err: any) => {
+        error: (err: any) => {
           const { message } = err.error;
           this.msgErro = message;
-        }
-      );
+        },
+      });
     }
   }
 

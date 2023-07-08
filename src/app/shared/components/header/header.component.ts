@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { AuthService } from './../../../ecommerce/pages/auth/auth.service';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CarrinhoService } from '../carrinho/carrinho.service';
 
 @Component({
@@ -14,21 +14,28 @@ export class HeaderComponent {
 
   qtdCarrinho = 0;
 
-  constructor(
-    private carrinhoService: CarrinhoService,
-    private authService: AuthService
-  ) {
-    this.authService.currentUsuario.subscribe(usuario => {
-      this.usuario = usuario;
+  authService = inject(AuthService);
+  carrinhoService = inject(CarrinhoService);
+
+  constructor() {
+    this.authService.currentUsuario.subscribe({
+      next: usuario => {
+        this.usuario = usuario;
+      },
     });
 
     if (!this.usuario) {
-      const user = this.authService.getUsuario();
-      this.authService.changeUsuario(user?.user);
+      this.usuario = this.authService.getUsuario();
     }
 
     this.carrinhoService.getDadosCarrinho().subscribe({
-      next: (dados: any) => (this.qtdCarrinho = dados?.itens.length),
+      next: (dados: any) => {
+        if (!dados) {
+          this.qtdCarrinho = 0;
+          return;
+        }
+        this.qtdCarrinho = dados?.itens.length;
+      },
     });
   }
 

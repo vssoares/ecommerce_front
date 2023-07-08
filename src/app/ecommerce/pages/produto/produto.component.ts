@@ -16,16 +16,20 @@ export class ProdutoComponent implements OnDestroy {
 
   constructor(private route: ActivatedRoute, private service: ProdutoService) {
     this.id_produto = 0;
-    this.route.params.subscribe(params => {
-      this.id_produto = params['id'];
-      this.carregarProdutos(this.id_produto);
+    this.route.params.subscribe({
+      next: params => {
+        this.id_produto = params['id'];
+        this.carregarProdutos(this.id_produto);
+      },
     });
   }
 
   carregarProdutos(id: number) {
     this.subs.push(
-      this.service.getProduto(id).subscribe(dados => {
-        this.produto = dados;
+      this.service.getProduto(id).subscribe({
+        next: dados => {
+          this.produto = dados;
+        },
       })
     );
   }

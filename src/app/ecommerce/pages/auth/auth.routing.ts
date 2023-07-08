@@ -12,16 +12,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        data: {
-          animation: 'LoginComponent',
-        },
       },
       {
         path: 'cadastro',
         component: CadastroComponent,
-        data: {
-          animation: 'CadastroComponent',
-        },
       },
     ],
   },

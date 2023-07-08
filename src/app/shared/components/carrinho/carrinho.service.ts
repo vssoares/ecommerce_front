@@ -42,7 +42,7 @@ export class CarrinhoService {
   }
 
   fetchDadosCarrinho(): Observable<any[]> {
-    const { user } = this.authService.getUsuario();
+    const user = this.authService.getUsuario();
     const params = {
       usuario_id: user?.id,
     };

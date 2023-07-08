@@ -26,14 +26,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   carregarProdutos() {
     this.subs.push(
-      this.service
-        .getProdutos()
-        .pipe(delay(2000))
-        .subscribe({
-          next: (dados: any) => {
-            this.produtos = dados;
-          },
-        })
+      this.service.getProdutos().subscribe({
+        next: (dados: any) => {
+          this.produtos = dados;
+        },
+      })
     );
   }
 

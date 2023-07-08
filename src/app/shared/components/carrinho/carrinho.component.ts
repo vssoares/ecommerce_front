@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { CarrinhoService } from './carrinho.service';
 import {
   fadeAnimation,
@@ -15,17 +15,17 @@ import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
   animations: [fadeAnimation, toggleCarrinho, inOutAnimation],
 })
 export class CarrinhoComponent implements OnDestroy {
-  carrinhoStatus = false;
-  carrinho: any;
   usuario: any;
+  carrinho: any;
+  carrinhoStatus = false;
   removendoProduto = false;
 
   subs: Subscription[] = [];
 
-  constructor(
-    private carrinhoService: CarrinhoService,
-    private authService: AuthService
-  ) {
+  authService = inject(AuthService);
+  carrinhoService = inject(CarrinhoService);
+
+  constructor() {
     this.subs.push(
       this.authService.currentUsuario.subscribe({
         next: usuario => {
@@ -34,6 +34,9 @@ export class CarrinhoComponent implements OnDestroy {
       })
     );
 
+    if (!this.usuario) {
+      this.usuario = this.authService.getUsuario();
+    }
     this.subs.push(
       this.carrinhoService._carrinhoToggle.subscribe({
         next: (status: any) => {
