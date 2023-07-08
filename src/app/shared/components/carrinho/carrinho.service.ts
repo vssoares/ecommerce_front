@@ -9,16 +9,15 @@ import { env } from 'src/app/env/env';
 export class CarrinhoService {
   private apiUrl = env.api;
 
+  carrinho$ = new BehaviorSubject<any>(null);
+
   carrinhoStatus = false;
   carrinhoDados: any;
 
   _carrinhoToggle = new Subject();
 
-  private carrinhoDados$ = new Subject();
-  _carrinhoDados = this.carrinhoDados$.asObservable();
-
-  private atualizarCarrinho$ = new Subject();
-  _atualizarCarrinho = this.atualizarCarrinho$.asObservable();
+  private atualizarCarrinho = new BehaviorSubject<any>(null);
+  atualizarCarrinho$ = this.atualizarCarrinho.asObservable();
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
@@ -37,16 +36,12 @@ export class CarrinhoService {
     this.setStatus(this.carrinhoStatus);
   }
 
-  getStatus() {
-    return this.carrinhoStatus;
-  }
-
   setStatus(status: boolean) {
     this.carrinhoStatus = status;
     this._carrinhoToggle.next(this.carrinhoStatus);
   }
 
-  getDadosCarrinho(): Observable<any[]> {
+  fetchDadosCarrinho(): Observable<any[]> {
     const { user } = this.authService.getUsuario();
     const params = {
       usuario_id: user?.id,
@@ -54,22 +49,25 @@ export class CarrinhoService {
     return this.http.get<[]>(this.apiUrl + 'ecommerce/carrinho', { params });
   }
 
+  getDadosCarrinho(): Observable<any> {
+    return this.carrinho$;
+  }
+
   setDadosCarrinho(dados: any) {
-    this.carrinhoDados = dados;
-    this.carrinhoDados$.next(dados);
+    this.carrinho$.next(dados);
   }
 
-  atualizarCarrinho(dados: any) {
-    this.atualizarCarrinho$.next(dados);
-  }
-
-  get dados_carrinho() {
-    return this.carrinhoDados;
+  refreshCarrinho(dados: any) {
+    this.atualizarCarrinho.next(dados);
   }
 
   adicionarProdutoCarrinho({ produto_id, quantidade }: any): Observable<any> {
+    const carrinho = this.carrinho$.getValue();
+    console.log(carrinho);
+    console.log(this.carrinho$);
+
     const params = {
-      carrinho_id: this.dados_carrinho?.id,
+      carrinho_id: carrinho.id,
       produto_id,
       quantidade,
     };
@@ -80,8 +78,9 @@ export class CarrinhoService {
   }
 
   removerProdutoCarrinho({ produto_id, isTudo }: any): Observable<any> {
+    const carrinho = this.carrinho$.getValue();
     const params = {
-      carrinho_id: this.dados_carrinho?.id,
+      carrinho_id: carrinho?.id,
       produto_id,
     };
     if (isTudo) {

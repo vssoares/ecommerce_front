@@ -39,15 +39,15 @@
         <div
           @fadeAnimation
           class="mt-8"
-          *ngIf="!dadosCarrinho?.itens?.length && !removendoProduto">
+          *ngIf="!carrinho?.itens?.length && !removendoProduto">
           <div class="PageCart-styles__EmptyCart-sc-d6480e32-3 bbLDQe">
             <p class="text-lg">O seu carrinho está vazio.</p>
           </div>
         </div>
-        <div *ngIf="dadosCarrinho?.itens?.length">
+        <div *ngIf="carrinho?.itens?.length">
           <div class="flow-root">
             <ul role="list" class="divide-y divide-gray-200">
-              <li class="flex py-6" *ngFor="let item of dadosCarrinho.itens">
+              <li class="flex py-6" *ngFor="let item of carrinho.itens">
                 <div
                   [@fadeAnimation]
                   class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -117,7 +117,7 @@
       <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
         <div class="flex justify-between text-base font-medium text-gray-900">
           <p>Subtotal</p>
-          <p>{{ dadosCarrinho?.valor_total | currency : 'BRL' }}</p>
+          <p>{{ carrinho?.valor_total | currency : 'BRL' }}</p>
         </div>
         <div class="mt-6">
           <a

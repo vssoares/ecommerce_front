@@ -27,13 +27,9 @@ export class HeaderComponent {
       this.authService.changeUsuario(user?.user);
     }
 
-    this.subs.push(
-      this.carrinhoService._carrinhoDados.subscribe({
-        next: (dados: any) => {
-          this.qtdCarrinho = dados?.itens.length;
-        },
-      })
-    );
+    this.carrinhoService.getDadosCarrinho().subscribe({
+      next: (dados: any) => (this.qtdCarrinho = dados?.itens.length),
+    });
   }
 
   logout() {

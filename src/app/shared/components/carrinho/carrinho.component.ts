@@ -16,7 +16,7 @@ import { AuthService } from 'src/app/ecommerce/pages/auth/auth.service';
 })
 export class CarrinhoComponent implements OnDestroy {
   carrinhoStatus = false;
-  dadosCarrinho: any;
+  carrinho: any;
   usuario: any;
   removendoProduto = false;
 
@@ -52,15 +52,15 @@ export class CarrinhoComponent implements OnDestroy {
     );
 
     this.subs.push(
-      this.carrinhoService._carrinhoDados.subscribe({
-        next: dados => {
-          this.dadosCarrinho = dados;
+      this.carrinhoService.getDadosCarrinho().subscribe({
+        next: (dados: any) => {
+          this.carrinho = dados;
         },
       })
     );
 
     this.subs.push(
-      this.carrinhoService._atualizarCarrinho.subscribe({
+      this.carrinhoService.atualizarCarrinho$.subscribe({
         next: dados => {
           if (dados) {
             this.carregarDadosCarrinho();
@@ -76,7 +76,7 @@ export class CarrinhoComponent implements OnDestroy {
 
   carregarDadosCarrinho() {
     this.subs.push(
-      this.carrinhoService.getDadosCarrinho().subscribe({
+      this.carrinhoService.fetchDadosCarrinho().subscribe({
         next: dados => {
           this.carrinhoService.setDadosCarrinho(dados);
         },

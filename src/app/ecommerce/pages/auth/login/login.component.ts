@@ -38,7 +38,7 @@ export class LoginComponent implements OnDestroy {
           this.authService.setToken(res.token);
           this.router.navigate(['']);
 
-          this.carrinhoService.atualizarCarrinho(true);
+          this.carrinhoService.refreshCarrinho(true);
         },
         (err: any) => {
           const { message } = err.error;
