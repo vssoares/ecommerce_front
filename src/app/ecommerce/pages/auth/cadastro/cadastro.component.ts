@@ -1,7 +1,6 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { fadeAnimation, inOutAnimation } from 'src/app/shared/animations';
 import { AuthService } from '../auth.service';

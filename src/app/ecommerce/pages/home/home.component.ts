@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, delay } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { HomeService } from './home.service';
 
 @Component({
