@@ -21,11 +21,17 @@ export class DadosBasicosResolve implements Resolve<any> {
     const usuario = this.authService.getUsuario();
     const cache = this.dadosBasicosService.dadosBasicosCache;
 
+    if (!usuario.id) {
+      this.loaderService.hide();
+      this.router.navigate(['/']);
+      return EMPTY;
+    }
+
     if (cache) {
       return cache.dados;
     }
 
-    return this.users.getDadosBasicos(usuario.user?.id).pipe(
+    return this.users.getDadosBasicos(usuario.id).pipe(
       delay(300),
       catchError(() => {
         this.loaderService.hide();

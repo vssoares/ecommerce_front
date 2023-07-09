@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { LoaderModule } from './shared/components/loader/loader.module';
-
+import { LazyImgDirective } from './shared/directives/lazyImg.directive';
 @NgModule({
   declarations: [AppComponent, AdminComponent, NotFoundComponent],
   imports: [
@@ -27,7 +27,7 @@ import { LoaderModule } from './shared/components/loader/loader.module';
     // material
     MatSlideToggleModule,
   ],
-  providers: [],
+  providers: [LazyImgDirective],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

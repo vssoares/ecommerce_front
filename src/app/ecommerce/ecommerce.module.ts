@@ -12,13 +12,17 @@ import { IconComponent } from '../shared/components/icon/icon.component';
 @NgModule({
   declarations: [
     EcommerceComponent,
-    HeaderComponent,
     CarrinhoComponent,
     HomeComponent,
     ProdutoComponent,
     ProdutoItemComponent,
   ],
   exports: [ProdutoComponent, HomeComponent, ProdutoItemComponent],
-  imports: [CommonModule, EcommerceRoutingModule, IconComponent],
+  imports: [
+    CommonModule,
+    EcommerceRoutingModule,
+    IconComponent,
+    HeaderComponent,
+  ],
 })
 export class EcommerceModule {}

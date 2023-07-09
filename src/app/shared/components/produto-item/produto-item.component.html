@@ -6,6 +6,7 @@
     routerLink="produto/{{ produto?.id }}"
     class="h-48 w-full cursor-pointer object-cover object-center"
     [src]="produto?.imagem"
+    loading="eager"
     alt="Product Image" />
   <div class="p-4 grow flex flex-col justify-between">
     <div>
